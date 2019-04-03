@@ -13,6 +13,7 @@
 		9F02CA422255129700356BE1 /* Stamper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F02CA402255129700356BE1 /* Stamper.xcdatamodeld */; };
 		9F02CA442255129800356BE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F02CA432255129800356BE1 /* Assets.xcassets */; };
 		9F02CA472255129800356BE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F02CA452255129800356BE1 /* LaunchScreen.storyboard */; };
+		9F02CA4F225538A000356BE1 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F02CA4E225538A000356BE1 /* arrow.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		9F02CA432255129800356BE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F02CA462255129800356BE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F02CA482255129800356BE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F02CA4E225538A000356BE1 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		9F0C48823407D9D84AEBD684 /* Pods-Stamper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stamper.release.xcconfig"; path = "Target Support Files/Pods-Stamper/Pods-Stamper.release.xcconfig"; sourceTree = "<group>"; };
 		C531C4F13419A532A7F814F7 /* libPods-Stamper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Stamper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -73,6 +75,7 @@
 				9F02CA392255129700356BE1 /* AppDelegate.swift */,
 				9F02CA3B2255129700356BE1 /* MapViewController.swift */,
 				9F02CA432255129800356BE1 /* Assets.xcassets */,
+				9F02CA4E225538A000356BE1 /* arrow.png */,
 				9F02CA452255129800356BE1 /* LaunchScreen.storyboard */,
 				9F02CA482255129800356BE1 /* Info.plist */,
 				9F02CA402255129700356BE1 /* Stamper.xcdatamodeld */,
@@ -149,6 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F02CA472255129800356BE1 /* LaunchScreen.storyboard in Resources */,
+				9F02CA4F225538A000356BE1 /* arrow.png in Resources */,
 				9F02CA442255129800356BE1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
