@@ -16,18 +16,24 @@ class MapViewController: UIViewController {
 		return NMFMapView(frame: self.view.frame)
 	}()
 	
-	var markerWithCaption = NMFMarker()
+	var markers = [NMFMarker]()
+	var mark = NMFMarker()
 	let cameraPosition = NMFCameraPosition()
 	var nameOfAddress = ""
 	
 	let queue = DispatchQueue(label: "alamofire", qos: .utility, attributes: [.concurrent])
-	
+	var infoWindow = NMFInfoWindow()
+	var defaultInfoWindowImage = NMFInfoWindowDefaultTextSource.data()
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 		setup()
 		
-		
+		DispatchQueue.main.async {
+			
+			self.mark.captionText = self.nameOfAddress
+		}
 		view.addSubview(self.mapView)
 	}
 	
@@ -38,9 +44,6 @@ class MapViewController: UIViewController {
 		createMarkerButton.backgroundColor = UIColor.black
 		createMarkerButton.layer.cornerRadius = 15
 		
-//		let arrowView = UIImageView(image: UIImage(named:"arrow"))
-		
-//		self.mapView.addSubview(arrowView)
 		self.mapView.addSubview(createMarkerButton)
 	}
 	
@@ -54,28 +57,15 @@ class MapViewController: UIViewController {
 		
 		var strlat = String(format:"%f",reslat)
 		var strlng = String(format:"%f",reslng)
-		var markerWithCaption = NMFMarker(position: NMGLatLng(lat: reslat, lng: reslng))
-		markerWithCaption.iconImage = NMF_MARKER_IMAGE_YELLOW
-		markerWithCaption.isFlat = true
-		markerWithCaption.captionTextSize = 14
-		markerWithCaption.mapView = self.mapView
 		
-		DispatchQueue.global(qos: .background).sync {
-			print(1)
-			
-			print(self.nameOfAddress)
-			print(3)
-			DispatchQueue.main.async {
-				print(2)
-				
-				self.nameOfAddress = self.requestAddress(strlat, strlng)
-				markerWithCaption.captionText = self.nameOfAddress
-//				markerWithCaption.captionText = "hello"
-			}
-		}
+		self.nameOfAddress = self.requestAddress(strlat, strlng)
+		var mark  = NMFMarker(position: NMGLatLng(lat: reslat, lng: reslng))
+		mark.iconImage = NMF_MARKER_IMAGE_YELLOW
+		mark.isFlat = true
+		mark.captionTextSize = 14
 		
-		
-//		print("\(reslat),\(reslng), \(markerWithCaption)")
+		mark.mapView = self.mapView
+		markers.append(mark)
 	}
 	
 	func requestAddress(_ lat: String, _ lng: String ) -> String {
@@ -84,10 +74,9 @@ class MapViewController: UIViewController {
 		"X-NCP-APIGW-API-KEY": Bundle.main.object(forInfoDictionaryKey: "API_KEY") as! String
 		]
 		var result = ""
-		var url = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?coords=\(lng),\(lat)&orders=roadaddr&output=json"
-		Alamofire.request(url, headers: headers).responseJSON(
-			queue: queue,
-			completionHandler: {response in
+		let url = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?coords=\(lng),\(lat)&orders=roadaddr&output=json"
+		Alamofire.request(url, headers: headers).responseJSON{
+			response in
 				if let json = response.result.value as? [String:Any] {
 					if let res = json["results"] as? [Any] {
 						if let addr = res[0] as? [String:Any] {
@@ -97,15 +86,16 @@ class MapViewController: UIViewController {
 
 								result = value
 								print(result)
-								self.markerWithCaption.captionText = result
 							}
 						}
 					}
 				}
+			
 			}
 			
-		)
+	
 		return result
 	}
+	
 	
 }
