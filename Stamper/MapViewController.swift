@@ -44,8 +44,8 @@ class MapViewController: UIViewController {
 	
 	func requestAddress(_ lat: String, _ lng: String ) -> String {
 		let headers: HTTPHeaders = [
-		"X-NCP-APIGW-API-KEY-ID": "soxouwjilk",
-		"X-NCP-APIGW-API-KEY": "Q9oV7NJp1RZD7negfm7A3xwmlkDN3KWvMwYlnpoO"
+		"X-NCP-APIGW-API-KEY-ID": Bundle.main.object(forInfoDictionaryKey: "API_KEY_ID") as! String,
+		"X-NCP-APIGW-API-KEY": Bundle.main.object(forInfoDictionaryKey: "API_KEY") as! String
 		]
 		var result:String
 		var url = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?coords=127.106338,37.362092&orders=roadaddr&output=json"
