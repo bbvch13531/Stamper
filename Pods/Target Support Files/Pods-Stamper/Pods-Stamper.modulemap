@@ -1,0 +1,6 @@
+module Pods_Stamper {
+  umbrella header "Pods-Stamper-umbrella.h"
+
+  export *
+  module * { export * }
+}
